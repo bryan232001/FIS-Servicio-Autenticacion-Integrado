@@ -1,0 +1,16 @@
+dn: uid=byunga,ou=People,dc=fis,dc=epn,dc=ec
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: byunga
+sn: Yunga
+givenName: Bryan
+cn: Bryan Yunga
+displayName: Bryan Yunga
+uidNumber: 10000
+gidNumber: 10000
+userPassword: {crypt}x
+gecos: Bryan Yunga
+loginShell: /bin/bash
+homeDirectory: /home/byunga
+mail: bryan.yunga@epn.edu.ec

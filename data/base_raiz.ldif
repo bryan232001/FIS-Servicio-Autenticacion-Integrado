@@ -1,0 +1,13 @@
+dn: dc=fis,dc=epn,dc=ec
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: Facultad de Ingenieria de Sistemas EPN
+dc: fis
+
+dn: cn=admin,dc=fis,dc=epn,dc=ec
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: admin
+description: Administrador del Directorio FIS
+userPassword: bryan

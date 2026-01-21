@@ -1,0 +1,11 @@
+dn: ou=People,dc=fis,dc=epn,dc=ec
+objectClass: organizationalUnit
+ou: People
+
+dn: ou=Groups,dc=fis,dc=epn,dc=ec
+objectClass: organizationalUnit
+ou: Groups
+
+dn: ou=Computers,dc=fis,dc=epn,dc=ec
+objectClass: organizationalUnit
+ou: Computers
