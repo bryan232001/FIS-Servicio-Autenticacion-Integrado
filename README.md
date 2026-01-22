@@ -1,8 +1,9 @@
 Servidor Integrado de Directorio y Autenticación (FIS-EPN)
 
-¡Hola! Este repositorio contiene mi solución para el sistema de seguridad centralizada de la Facultad de Ingeniería de Sistemas (FIS). El objetivo fue crear un entorno donde la identidad y el acceso estén protegidos por estándares industriales, adaptados para funcionar de forma eficiente en Windows Subsystem for Linux (WSL).
+Hola Este repositorio contiene mi solución para el sistema de seguridad centralizada de la Facultad de Ingeniería de Sistemas (FIS). El objetivo fue crear un entorno donde la identidad y el acceso estén protegidos por estándares industriales, adaptados para funcionar de forma eficiente en Windows Subsystem for Linux (WSL).
 
 ¿Qué logré con este proyecto?
+
 Implementé un sistema de Single Sign-On (SSO) que permite a los usuarios de la facultad autenticarse una sola vez para acceder a múltiples servicios.
 
 Directorio: Estructuré la jerarquía de la FIS en OpenLDAP (dc=fis,dc=epn,dc=ec).
