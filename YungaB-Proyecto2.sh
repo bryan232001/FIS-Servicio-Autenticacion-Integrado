@@ -8,6 +8,8 @@ HOSTNAME="auth-server"
 FQDN="$HOSTNAME.$DOMAIN"
 IP_REAL=$(hostname -I | awk '{print $1}')
 
+echo "--- BIENVENIDOS AL SERVICIO DE AUTENTICACIÓN INTEGRADO ---"
+echo "----------------------------------------------------------"
 echo "--- Iniciando Configuración Automática Total ---"
 
 # 1. Configurar Hostname e IP
@@ -35,7 +37,7 @@ sudo tee /etc/krb5.conf <<EOF
     $DOMAIN = $REALM
 EOF
 
-# 3. Inicializar la base de datos de Kerberos (Clave para que el servicio arranque)
+# 3. Inicializar la base de datos de Kerberos 
 sudo kdb5_util create -s -P Contraseña123
 
 # 4. Crear Principales y Keytabs
@@ -51,4 +53,4 @@ sudo chown openldap:openldap /etc/ldap/ldap.keytab
 sudo systemctl restart krb5-kdc krb5-admin-server slapd
 
 echo "--- DESPLIEGUE EXITOSO REAL ---"
-echo "Prueba ahora: kinit byunga"
+echo "Prueba ahora: kinit byunga "
