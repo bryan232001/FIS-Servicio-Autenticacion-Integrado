@@ -1,42 +1,54 @@
 #!/bin/bash
-# Proyecto 2 FIS-EPN
+# Proyecto 2 FIS-EPN: Versión actual
 # Estudiante: Bryan Yunga
 
-# 1. Variables y Detección de Red
 DOMAIN="fis.epn.ec"
+REALM="FIS.EPN.EC"
 HOSTNAME="auth-server"
 FQDN="$HOSTNAME.$DOMAIN"
-# Detecta automáticamente la IP de tu VirtualBox
 IP_REAL=$(hostname -I | awk '{print $1}')
 
-echo "--- Iniciando Configuración Automatizada del Reino FIS.EPN.EC ---"
+echo "--- Iniciando Configuración Automática Total ---"
 
-# 2. Configuración de Identidad y Red
+# 1. Configurar Hostname e IP
 sudo hostnamectl set-hostname $FQDN
-# Limpia el archivo hosts de entradas antiguas del proyecto
 sudo sed -i "/$DOMAIN/d" /etc/hosts
 echo "$IP_REAL $FQDN $HOSTNAME" | sudo tee -a /etc/hosts
 
-# 3. Instalación de Servicios
+# 2. Pre-configurar Kerberos (ESTO EVITA EL ERROR DE REINO)
 sudo apt update
-sudo DEBIAN_FRONTEND=noninteractive apt install -y slapd ldap-utils krb5-kdc krb5-admin-server
+sudo DEBIAN_FRONTEND=noninteractive apt install -y krb5-kdc krb5-admin-server slapd ldap-utils
 
-# 4. Solución al Error 80 de SASL (Keytab)
-# Creamos el enlace simbólico para que el sistema encuentre la llave
-sudo ln -sf /etc/ldap/ldap.keytab /etc/krb5.keytab
+echo "Escribiendo configuración de Kerberos..."
+sudo tee /etc/krb5.conf <<EOF
+[libdefaults]
+    default_realm = $REALM
 
-# 5. Registro Automático de Usuarios en Kerberos
-# Esto evita el error 'Client not found'
-echo "Registrando principales de servicio y usuario..."
+[realms]
+    $REALM = {
+        kdc = $FQDN
+        admin_server = $FQDN
+    }
+
+[domain_realm]
+    .$DOMAIN = $REALM
+    $DOMAIN = $REALM
+EOF
+
+# 3. Inicializar la base de datos de Kerberos (Clave para que el servicio arranque)
+sudo kdb5_util create -s -P Contraseña123
+
+# 4. Crear Principales y Keytabs
 sudo kadmin.local -q "addprinc -randkey ldap/$FQDN"
 sudo kadmin.local -q "ktadd -k /etc/ldap/ldap.keytab ldap/$FQDN"
-# Aquí creamos tu usuario con una contraseña por defecto
 sudo kadmin.local -q "addprinc -pw Contraseña123 byunga"
 
-# 6. Permisos y Reinicio
+# 5. Permisos y Enlaces
+sudo ln -sf /etc/ldap/ldap.keytab /etc/krb5.keytab
 sudo chown openldap:openldap /etc/ldap/ldap.keytab
-sudo systemctl restart slapd krb5-kdc
 
-echo "--- DESPLIEGUE EXITOSO ---"
-echo "IP Detectada: $IP_REAL"
-echo "Prueba ahora: kinit byunga (Contraseña: Contraseña123)"
+# 6. Reiniciar Servicios
+sudo systemctl restart krb5-kdc krb5-admin-server slapd
+
+echo "--- DESPLIEGUE EXITOSO REAL ---"
+echo "Prueba ahora: kinit byunga"
