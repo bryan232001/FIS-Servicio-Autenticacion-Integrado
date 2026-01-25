@@ -26,53 +26,75 @@ La organización del repositorio sigue un esquema modular para facilitar el mant
 ├── docs/                # Documentación técnica, análisis y diseño
 ├── README.md            # Guía de usuario y documentación general
 └── YungaB-Proyecto2.sh  # Script maestro de despliegue automatizado
-
+```
 🔐 Consideraciones sobre la Seguridad del Ticket
-Para facilitar la revisión académica, el sistema utiliza la credencial predeterminada Contraseña123. Sin embargo, el diseño del servidor se centra en demostrar la integridad del ticket de Kerberos.
 
-Incluso si la clave es conocida en este entorno de prueba, el protocolo garantiza que el ticket generado (TGT) sea inalterable y esté protegido por hashes criptográficos, lo que previene ataques de suplantación en tránsito.
+Para facilitar la revisión académica, el sistema utiliza la credencial predeterminada (Contraseña123.)
+
+Sin embargo, el diseño del servidor se centra en demostrar la integridad del ticket de Kerberos.
+
+El protocolo garantiza que el ticket generado sea inalterable y esté protegido por hashes criptográficos, asegurando que el acceso a los servicios sea resistente a intentos de suplantación en
+tránsito.
 
 🛠️ Instalación Rápida
-Para desplegar este servidor en un entorno Ubuntu (WSL2 o Nativo), siga estos pasos de forma secuencial:
+
+Siga estos pasos de forma secuencial para desplegar el servidor en su terminal de Ubuntu WSL:
+
+---
 
 Paso 1: Clonación del repositorio
-Descargue el código fuente directamente desde GitHub:
+
+Descargue el código fuente y acceda al directorio del proyecto:
 
 Bash
-
-git clone [https://github.com/bryan232001/FIS-Servicio-Autenticacion-Integrado.git](https://github.com/bryan232001/FIS-Servicio-Autenticacion-Integrado.git)
+```text
+git clone https://github.com/bryan232001/FIS-Servicio-Autenticacion-Integrado.git
 cd FIS-Servicio-Autenticacion-Integrado
+```
 Paso 2: Asignación de permisos al orquestador
-Otorgue permisos de ejecución al script maestro:
-
+Otorgue permisos de ejecución al script maestro para poder iniciar la configuración:
 Bash
-
+```text
 chmod +x YungaB-Proyecto2.sh
+```
 Paso 3: Ejecución del despliegue automático
-Inicie el proceso de configuración automática:
+
+Inicie el proceso de configuración automática del servidor. Este paso instalará las dependencias necesarias y sincronizará los servicios de Kerberos y LDAP de forma desatendida:
 
 Bash
-
+```text
 sudo ./YungaB-Proyecto2.sh
+```
+
+---
+
 ✅ Validación del Sistema
-Una vez finalizada la instalación, puede verificar la correcta integración ejecutando estos comandos:
 
-Solicitar Ticket de Identidad: Obtenga su ticket inicial de Kerberos:
+Una vez finalizada la instalación, puede verificar la correcta integración de los servicios ejecutando los siguientes comandos en su terminal:
+
+
+Solicitar Ticket de Identidad: Obtenga su ticket inicial de Kerberos para el usuario institucional vinculado al Reino FIS.EPN.EC:
 
 Bash
-
+```text
 kinit byunga
-Verificar Ticket Activo: Compruebe la validez y caducidad de su credencial:
+```
+Verificar Ticket Activo: Compruebe la validez, el reino (FIS.EPN.EC) y la caducidad de su credencial actual:
 
 Bash
-
+```text
 klist
-Comprobar Acceso al Directorio (SSO): Valide la integración mediante GSSAPI sin requerir contraseña adicional:
+```
+Comprobar Acceso al Directorio (SSO): Valide la integración mediante el mecanismo GSSAPI para confirmar que el servidor permite el acceso sin requerir el ingreso manual de contraseñas:
 
 Bash
-
+```text
 ldapwhoami -Y GSSAPI
-Nota: Si el tercer paso devuelve el nombre del usuario correctamente, el sistema de Single Sign-On está operando bajo los estándares de la Politécnica.
+```
+
+---
+
+Nota Final: Si el tercer paso le devuelve el nombre del usuario correctamente (ej. dn:uid=byunga,ou=people,dc=fis,dc=epn,dc=ec), el sistema de Single Sign-On está operando de forma exitosa bajo los estándares de la Politécnica.
 
 Autor: Bryan Yunga
 
