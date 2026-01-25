@@ -37,38 +37,38 @@ Para desplegar este servidor en un entorno Ubuntu (WSL2 o Nativo), siga estos pa
 
 Paso 1: Clonación del repositorio Descargue el código fuente directamente desde GitHub:
 
-Bash
+Ejecutar comando
 
-git clone [https://github.com/bryan232001/FIS-Servicio-Autenticacion-Integrado.git](https://github.com/bryan232001/FIS-Servicio-Autenticacion-Integrado.git)
-cd FIS-Servicio-Autenticacion-Integrado
+```text git clone [https://github.com/bryan232001/FIS-Servicio-Autenticacion-Integrado.git](https://github.com/bryan232001/FIS-Servicio-Autenticacion-Integrado.git)
+cd FIS-Servicio-Autenticacion-Integrado ```
 Paso 2: Asignación de permisos al orquestador Otorgue permisos de ejecución al script maestro:
 
-Bash
+Ejecutar comando
 
-chmod +x YungaB-Proyecto2.sh
+```text chmod +x YungaB-Proyecto2.sh ```
 Paso 3: Ejecución del despliegue automático Inicie el proceso de configuración automática:
 
-Bash
+Ejecutar comando
 
-sudo ./YungaB-Proyecto2.sh
+```text sudo ./YungaB-Proyecto2.sh ```
 ## Validación del Sistema
 Una vez finalizada la instalación, puede verificar la correcta integración de los servicios ejecutando los siguientes comandos en su terminal:
 
 1. Solicitar Ticket de Identidad: Obtenga su ticket inicial de Kerberos:
 
-Bash
+Ejecutar comando
 
-kinit byunga
+```text kinit byunga```
 2. Verificar Ticket Activo: Compruebe la validez y caducidad de su credencial:
 
-Bash
+Ejecutar comando
 
-klist
+```text klist ```
 3. Comprobar Acceso al Directorio (SSO): Valide la integración mediante GSSAPI sin requerir contraseña adicional:
 
-Bash
+Ejecutar comando
 
-ldapwhoami -Y GSSAPI
+```text ldapwhoami -Y GSSAPI ```
 Nota: Si el tercer paso le devuelve el nombre del usuario correctamente, el sistema de Single Sign-On está operando bajo los estándares de la Politécnica.
 
 Autor: Bryan Yunga
