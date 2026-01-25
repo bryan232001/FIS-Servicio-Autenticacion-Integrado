@@ -4,7 +4,7 @@ Este repositorio contiene la implementación de un sistema de gestión de identi
 
 ---
 
-## ## ¿Qué logré con este proyecto?
+## ¿Qué logré con este proyecto?
 
 * **Implementación de Single Sign-On (SSO):** Logré que los usuarios de la facultad puedan autenticarse una sola vez para acceder a múltiples servicios de forma segura.
 * **Directorio Organizado:** Estructuré la jerarquía institucional en OpenLDAP bajo el sufijo `dc=fis,dc=epn,dc=ec`.
@@ -13,7 +13,7 @@ Este repositorio contiene la implementación de un sistema de gestión de identi
 
 ---
 
-## ## Estructura del Proyecto
+## Estructura del Proyecto
 
 La organización del repositorio sigue un esquema modular para facilitar el mantenimiento y la escalabilidad del sistema:
 
@@ -25,7 +25,8 @@ La organización del repositorio sigue un esquema modular para facilitar el mant
 │   └── ldif/            # Definiciones de objetos y estructura del directorio
 ├── docs/                # Documentación técnica, análisis y diseño
 ├── README.md            # Guía de usuario y documentación general
-└── YungaB-Proyecto2.sh  # Script maestro de despliegue automatizado
+└── YungaB-Proyecto2.sh  # Script maestro de despliegue automatizado 
+```
 ## Consideraciones sobre la Seguridad del Ticket
 Para facilitar la revisión académica, el sistema utiliza la credencial predeterminada Contraseña123. Sin embargo, el diseño del servidor se centra en demostrar la integridad del ticket de Kerberos.
 
