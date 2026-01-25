@@ -46,14 +46,16 @@ Paso 1: Clonación del repositorio
 
 Descargue el código fuente y acceda al directorio del proyecto:
 
-Bash
+Ejecutar Comando
 ```text
 git clone https://github.com/bryan232001/FIS-Servicio-Autenticacion-Integrado.git
 cd FIS-Servicio-Autenticacion-Integrado
 ```
 Paso 2: Asignación de permisos al orquestador
+
 Otorgue permisos de ejecución al script maestro para poder iniciar la configuración:
-Bash
+
+Ejecutar Comando
 ```text
 chmod +x YungaB-Proyecto2.sh
 ```
@@ -61,7 +63,7 @@ Paso 3: Ejecución del despliegue automático
 
 Inicie el proceso de configuración automática del servidor. Este paso instalará las dependencias necesarias y sincronizará los servicios de Kerberos y LDAP de forma desatendida:
 
-Bash
+Ejecutar Comando
 ```text
 sudo ./YungaB-Proyecto2.sh
 ```
@@ -75,19 +77,19 @@ Una vez finalizada la instalación, puede verificar la correcta integración de 
 
 Solicitar Ticket de Identidad: Obtenga su ticket inicial de Kerberos para el usuario institucional vinculado al Reino FIS.EPN.EC:
 
-Bash
+Ejecutar Comando
 ```text
 kinit byunga
 ```
 Verificar Ticket Activo: Compruebe la validez, el reino (FIS.EPN.EC) y la caducidad de su credencial actual:
 
-Bash
+Ejecutar Comando
 ```text
 klist
 ```
 Comprobar Acceso al Directorio (SSO): Valide la integración mediante el mecanismo GSSAPI para confirmar que el servidor permite el acceso sin requerir el ingreso manual de contraseñas:
 
-Bash
+Ejecutar Comando
 ```text
 ldapwhoami -Y GSSAPI
 ```
