@@ -21,8 +21,7 @@ Superé el reto de mantener la identidad del servidor
 
 🗂️ Estructura del Proyecto
 
-La organización del repositorio sigue un esquema modular, pensado para facilitar el mantenimiento y la escalabilidad del sistema:
-
+```text
 .
 ├── configs/
 │   └── krb5/            # Archivos de configuración del Reino Kerberos
@@ -31,7 +30,6 @@ La organización del repositorio sigue un esquema modular, pensado para facilita
 ├── docs/                # Documentación técnica, análisis y diseño
 ├── README.md            # Guía de usuario y documentación general
 └── YungaB-Proyecto2.sh  # Script maestro de despliegue automatizado
-
 ⚙️ Instalación Rápida
 
 Para desplegar este servidor en tu propia máquina, sigue estos pasos:
