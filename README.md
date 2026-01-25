@@ -107,6 +107,6 @@ Nota Final:
 Si el tercer paso le devuelve el nombre del usuario correctamente
 (ej. dn:uid=byunga,ou=people,dc=fis,dc=epn,dc=ec), el sistema de Single Sign-On está operando de forma exitosa bajo los estándares de la Politécnica.
 
-Autor: Bryan Yunga
+Estudiante: Bryan Yunga
 
-Institución: Escuela Politécnica Nacional - FIS
+Escuela Politécnica Nacional - FIS
