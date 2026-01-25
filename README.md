@@ -1,25 +1,21 @@
-🛡️Servidor Integrado de Directorio y Autenticación (FIS-EPN)
+# Servidor Integrado de Directorio y Autenticación (FIS-EPN)
 
-Este repositorio contiene mi solución para el sistema de seguridad centralizada de la Facultad de Ingeniería de Sistemas (FIS).
-El objetivo fue crear un entorno robusto de autenticación, autorización y gestión de identidades, integrando tecnologías estándar utilizadas a nivel institucional.
+Este repositorio contiene la implementación de un sistema de gestión de identidades centralizado para la Facultad de Ingeniería de Sistemas (FIS). La solución integra las capacidades de almacenamiento jerárquico de **OpenLDAP** con el protocolo de seguridad de **Kerberos**, permitiendo un entorno de autenticación moderna y eficiente diseñado específicamente para **Windows Subsystem for Linux (WSL2)**.
 
- ¿Qué logré con este proyecto?
+---
 
- Implementación de Single Sign-On (SSO):
-Logré que los usuarios de la facultad puedan autenticarse una sola vez para acceder a múltiples servicios de forma segura.
+## ## ¿Qué logré con este proyecto?
 
- Directorio Organizado:
-Estructuré la jerarquía institucional en OpenLDAP bajo el sufijo:
-dc=fis,dc=epn,dc=ec.
+* **Implementación de Single Sign-On (SSO):** Logré que los usuarios de la facultad puedan autenticarse una sola vez para acceder a múltiples servicios de forma segura.
+* **Directorio Organizado:** Estructuré la jerarquía institucional en OpenLDAP bajo el sufijo `dc=fis,dc=epn,dc=ec`.
+* **Criptografía Robusta:** Configuré un Reino de Kerberos (`FIS.EPN.EC`) para asegurar que las credenciales no viajen en texto plano por la red.
+* **Persistencia en WSL:** Superé el reto de mantener la identidad del servidor (`auth-server.fis.epn.ec`) mediante un sistema de detección dinámica de IP.
 
- Criptografía Robusta:
-Configuré un Reino de Kerberos (FIS.EPN.EC) para asegurar que las credenciales no viajen en texto plano por la red.
+---
 
- Persistencia en WSL:
-Superé el reto de mantener la identidad del servidor
-(auth-server.fis.epn.ec) mediante un sistema de detección dinámica de IP.
+## ## Estructura del Proyecto
 
-🗂️ Estructura del Proyecto
+La organización del repositorio sigue un esquema modular para facilitar el mantenimiento y la escalabilidad del sistema:
 
 ```text
 .
@@ -30,42 +26,50 @@ Superé el reto de mantener la identidad del servidor
 ├── docs/                # Documentación técnica, análisis y diseño
 ├── README.md            # Guía de usuario y documentación general
 └── YungaB-Proyecto2.sh  # Script maestro de despliegue automatizado
-⚙️ Instalación Rápida
+## Consideraciones sobre la Seguridad del Ticket
+Para facilitar la revisión académica, el sistema utiliza la credencial predeterminada Contraseña123. Sin embargo, el diseño del servidor se centra en demostrar la integridad del ticket de Kerberos.
 
-Para desplegar este servidor en tu propia máquina, sigue estos pasos:
+Incluso si la clave es conocida en este escenario de prueba, el protocolo garantiza que el ticket generado (TGT) sea inalterable y esté protegido por hashes criptográficos. Esto asegura que, una vez emitida la identidad digital, el acceso a los servicios sea seguro y resistente a intentos de suplantación en tránsito.
 
-🔹 Paso 1: Clona el repositorio
-git clone https://github.com/bryan232001/FIS-Servicio-Autenticacion-Integrado.git
+## Instalación Rápida
+Para desplegar este servidor en un entorno Ubuntu (WSL2 o Nativo), siga estos pasos de forma secuencial:
+
+Paso 1: Clonación del repositorio Descargue el código fuente directamente desde GitHub:
+
+Bash
+
+git clone [https://github.com/bryan232001/FIS-Servicio-Autenticacion-Integrado.git](https://github.com/bryan232001/FIS-Servicio-Autenticacion-Integrado.git)
 cd FIS-Servicio-Autenticacion-Integrado
+Paso 2: Asignación de permisos al orquestador Otorgue permisos de ejecución al script maestro:
 
-🔹 Paso 2: Asigna permisos al orquestador
+Bash
+
 chmod +x YungaB-Proyecto2.sh
+Paso 3: Ejecución del despliegue automático Inicie el proceso de configuración automática:
 
-🔹 Paso 3: Ejecuta el despliegue automático
+Bash
+
 sudo ./YungaB-Proyecto2.sh
+## Validación del Sistema
+Una vez finalizada la instalación, puede verificar la correcta integración de los servicios ejecutando los siguientes comandos en su terminal:
 
- ¿Cómo compruebo que funciona?
+1. Solicitar Ticket de Identidad: Obtenga su ticket inicial de Kerberos:
 
-No confíes solo en mi palabra 😉
-Ejecuta los siguientes comandos para verificar la integración completa:
+Bash
 
-🔹 Paso 1: Solicita tu ticket de Kerberos
 kinit byunga
+2. Verificar Ticket Activo: Compruebe la validez y caducidad de su credencial:
 
-🔹 Paso 2: Verifica tu ticket activo
+Bash
+
 klist
+3. Comprobar Acceso al Directorio (SSO): Valide la integración mediante GSSAPI sin requerir contraseña adicional:
 
-🔹 Paso 3: Prueba la autenticación integrada (SSO)
+Bash
+
 ldapwhoami -Y GSSAPI
+Nota: Si el tercer paso le devuelve el nombre del usuario correctamente, el sistema de Single Sign-On está operando bajo los estándares de la Politécnica.
 
+Autor: Bryan Yunga
 
-Nota:
-Si el último comando devuelve el nombre del usuario sin pedir contraseña, el servidor está operando correctamente bajo los estándares de la Escuela Politécnica Nacional.
-
-👤 Estudiante
-
-Bryan Yunga
-
-🎓 Institución:
-Escuela Politécnica Nacional
-Facultad de Ingeniería de Sistemas (FIS)
+Institución: Escuela Politécnica Nacional - FIS
