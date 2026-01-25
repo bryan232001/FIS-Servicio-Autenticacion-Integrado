@@ -75,19 +75,25 @@ sudo ./YungaB-Proyecto2.sh
 Una vez finalizada la instalación, puede verificar la correcta integración de los servicios ejecutando los siguientes comandos en su terminal:
 
 
-Solicitar Ticket de Identidad: Obtenga su ticket inicial de Kerberos para el usuario institucional vinculado al Reino FIS.EPN.EC:
+Solicitar Ticket de Identidad: 
+
+Obtenga su ticket inicial de Kerberos para el usuario institucional vinculado al Reino FIS.EPN.EC:
 
 Ejecutar Comando
 ```text
 kinit byunga
 ```
-Verificar Ticket Activo: Compruebe la validez, el reino (FIS.EPN.EC) y la caducidad de su credencial actual:
+Verificar Ticket Activo: 
+
+Compruebe la validez, el reino (FIS.EPN.EC) y la caducidad de su credencial actual:
 
 Ejecutar Comando
 ```text
 klist
 ```
-Comprobar Acceso al Directorio (SSO): Valide la integración mediante el mecanismo GSSAPI para confirmar que el servidor permite el acceso sin requerir el ingreso manual de contraseñas:
+Comprobar Acceso al Directorio (SSO): 
+
+Valide la integración mediante el mecanismo GSSAPI para confirmar que el servidor permite el acceso sin requerir el ingreso manual de contraseñas:
 
 Ejecutar Comando
 ```text
@@ -96,7 +102,10 @@ ldapwhoami -Y GSSAPI
 
 ---
 
-Nota Final: Si el tercer paso le devuelve el nombre del usuario correctamente (ej. dn:uid=byunga,ou=people,dc=fis,dc=epn,dc=ec), el sistema de Single Sign-On está operando de forma exitosa bajo los estándares de la Politécnica.
+Nota Final: 
+
+Si el tercer paso le devuelve el nombre del usuario correctamente
+(ej. dn:uid=byunga,ou=people,dc=fis,dc=epn,dc=ec), el sistema de Single Sign-On está operando de forma exitosa bajo los estándares de la Politécnica.
 
 Autor: Bryan Yunga
 
