@@ -1,0 +1,11 @@
+dn: uid=emafla,ou=profesores,dc=fis,dc=epn,dc=ec
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: Enrique Mafla
+sn: Mafla
+uid: emafla
+uidNumber: 3001
+gidNumber: 3000
+homeDirectory: /home/emafla
+loginShell: /bin/bash

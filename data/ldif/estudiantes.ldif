@@ -1,0 +1,35 @@
+# Estudiante 1
+dn: uid=abautista,ou=estudiantes,dc=fis,dc=epn,dc=ec
+objectClass: inetOrgPerson
+objectClass: posixAccount
+cn: Alexis Bautista
+sn: Bautista
+uid: abautista
+uidNumber: 4001
+gidNumber: 4000
+homeDirectory: /home/abautista
+loginShell: /bin/bash
+
+# Estudiante 2
+dn: uid=acorrea,ou=estudiantes,dc=fis,dc=epn,dc=ec
+objectClass: inetOrgPerson
+objectClass: posixAccount
+cn: Adrian Correa
+sn: Correa
+uid: acorrea
+uidNumber: 4002
+gidNumber: 4000
+homeDirectory: /home/acorrea
+loginShell: /bin/bash
+
+# Estudiante 3
+dn: uid=svite,ou=estudiantes,dc=fis,dc=epn,dc=ec
+objectClass: inetOrgPerson
+objectClass: posixAccount
+cn: Santiago Vite
+sn: Vite
+uid: svite
+uidNumber: 4003
+gidNumber: 4000
+homeDirectory: /home/svite
+loginShell: /bin/bash

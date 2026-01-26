@@ -1,4 +1,4 @@
-dn: uid=byunga,ou=People,dc=fis,dc=epn,dc=ec
+dn: uid=byunga,ou=estudiantes,dc=fis,dc=epn,dc=ec
 objectClass: inetOrgPerson
 objectClass: posixAccount
 objectClass: shadowAccount

@@ -9,3 +9,12 @@ ou: Groups
 dn: ou=Computers,dc=fis,dc=epn,dc=ec
 objectClass: organizationalUnit
 ou: Computers
+# Unidad para el personal docente
+dn: ou=profesores,dc=fis,dc=epn,dc=ec
+objectClass: organizationalUnit
+ou: profesores
+
+# Unidad para el cuerpo estudiantil
+dn: ou=estudiantes,dc=fis,dc=epn,dc=ec
+objectClass: organizationalUnit
+ou: estudiantes
