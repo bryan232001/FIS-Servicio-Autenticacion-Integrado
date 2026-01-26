@@ -4,7 +4,7 @@ Este repositorio contiene la implementación de un sistema de gestión de identi
 
 ---
 
-## 🚀 ¿Qué logré con este proyecto?
+##  ¿Qué logré con este proyecto?
 
 * **Implementación de Single Sign-On (SSO):** Logré que los usuarios se autentiquen una sola vez para acceder a múltiples servicios de forma segura.
 * **Directorio Organizado:** Estructuración de la jerarquía institucional en OpenLDAP bajo el sufijo `dc=fis,dc=epn,dc=ec`.
@@ -13,7 +13,7 @@ Este repositorio contiene la implementación de un sistema de gestión de identi
 
 ---
 
-## 📂 Estructura del Proyecto
+##  Estructura del Proyecto
 
 La organización del repositorio sigue un esquema modular para facilitar el mantenimiento:
 
@@ -27,7 +27,7 @@ La organización del repositorio sigue un esquema modular para facilitar el mant
 ├── README.md            # Guía de usuario y documentación general
 └── YungaB-Proyecto2.sh  # Script maestro de despliegue automatizado
 ```
-🔐 Consideraciones sobre la Seguridad del Ticket
+## Consideraciones sobre la Seguridad del Ticket
 
 Para facilitar la revisión académica, el sistema utiliza la credencial predeterminada (Contraseña123.)
 
@@ -36,7 +36,7 @@ Sin embargo, el diseño del servidor se centra en demostrar la integridad del ti
 El protocolo garantiza que el ticket generado sea inalterable y esté protegido por hashes criptográficos, asegurando que el acceso a los servicios sea resistente a intentos de suplantación en
 tránsito.
 
-🛠️ Instalación Rápida
+## Instalación Rápida
 
 Siga estos pasos de forma secuencial para desplegar el servidor en su terminal de Ubuntu WSL:
 
@@ -46,9 +46,10 @@ Paso 1: Clonación del repositorio
 
 Descargue el código fuente y acceda al directorio del proyecto:
 
-Ejecutar Comando
+Ejecutar Comandos
 ```text
 git clone https://github.com/bryan232001/FIS-Servicio-Autenticacion-Integrado.git
+
 cd FIS-Servicio-Autenticacion-Integrado
 ```
 Paso 2: Asignación de permisos al orquestador
@@ -70,7 +71,7 @@ sudo ./YungaB-Proyecto2.sh
 
 ---
 
-✅ Validación del Sistema
+ ## Validación del Sistema
 
 Una vez finalizada la instalación, puede verificar la correcta integración de los servicios ejecutando los siguientes comandos en su terminal:
 
@@ -102,7 +103,7 @@ ldapwhoami -Y GSSAPI
 
 ---
 
-Nota Final: 
+## Nota Final: 
 
 Si el tercer paso le devuelve el nombre del usuario correctamente
 (ej. dn:uid=byunga,ou=people,dc=fis,dc=epn,dc=ec), el sistema de Single Sign-On está operando de forma exitosa bajo los estándares de la Politécnica.
