@@ -7,11 +7,18 @@ Este repositorio contiene la implementación de un sistema de gestión de identi
 ##  ¿Qué logré con este proyecto?
 
 * **Implementación de Single Sign-On (SSO):** Logré que los usuarios se autentiquen una sola vez para acceder a múltiples servicios de forma segura.
-* **Directorio Organizado:** Estructuración de la jerarquía institucional en OpenLDAP bajo el sufijo `dc=fis,dc=epn,dc=ec`.
+* **Directorio Organizado:** Estructuración profesional del directorio mediante Unidades Organizativas (ou=profesores, ou=estudiantes).
 * **Criptografía Robusta:** Configuración de un Reino de Kerberos (`FIS.EPN.EC`) para evitar el envío de contraseñas en texto plano.
 * **Persistencia en WSL:** Detección dinámica de IP para asegurar que el hostname `auth-server.fis.epn.ec` resuelva correctamente en entornos virtuales.
 
 ---
+
+## Requisitos Críticos de Infraestructura
+Para que el protocolo Kerberos opere correctamente, el sistema garantiza dos pilares fundamentales:
+
+1. Sincronización Horaria (NTP): Kerberos requiere que la diferencia horaria entre cliente y servidor sea < 5 minutos para prevenir ataques de denegación.
+
+2. Resolución DNS: El servidor depende de que el hostname institucional resuelva correctamente mediante el archivo /etc/hosts.
 
 ##  Estructura del Proyecto
 
@@ -20,7 +27,7 @@ La organización del repositorio sigue un esquema modular para facilitar el mant
 ```text
 .
 ├── configs/
-│   └── krb5/            # Archivos de configuración del Reino Kerberos
+│   └── krb5/            # Archivos de configuración del Reino Kerberos (FIS.EPN.EC)
 ├── data/
 │   └── ldif/            # Definiciones de objetos y estructura del directorio
 ├── docs/                # Documentación técnica, análisis y diseño
@@ -29,7 +36,7 @@ La organización del repositorio sigue un esquema modular para facilitar el mant
 ```
 ## Consideraciones sobre la Seguridad del Ticket
 
-Para facilitar la revisión académica, el sistema utiliza la credencial predeterminada (Contraseña123.)
+Para facilitar la revisión académica, el sistema utiliza la credencial predeterminada (contraseña123)
 
 Sin embargo, el diseño del servidor se centra en demostrar la integridad del ticket de Kerberos.
 
@@ -80,7 +87,8 @@ Solicitar Ticket de Identidad:
 
 Obtenga su ticket inicial de Kerberos para el usuario institucional vinculado al Reino FIS.EPN.EC:
 
-Ejecutar Comando
+Ejecutar Comando y coloque por unica vez la contraseña que esta predeterminada para todos los usuarios (contraseña123)
+
 ```bash
 kinit byunga
 ```
@@ -108,7 +116,16 @@ ldapwhoami -Y GSSAPI
 Si el tercer paso le devuelve el nombre del usuario correctamente
 (ej. dn:uid=byunga,ou=people,dc=fis,dc=epn,dc=ec), el sistema de Single Sign-On está operando de forma exitosa bajo los estándares de la Politécnica.
 
+## Estructura Institucional (Usuarios Reales)
+El sistema cuenta con la siguiente jerarquía ya configurada:
 
+| Rol        | Usuario (UID)                    | Unidad Organizativa (OU) |
+|------------|----------------------------------|--------------------------|
+| Docente    | emafla (Enrique Mafla)            | ou=profesores            |
+| Estudiante | byunga (Bryan Yunga)              | ou=estudiantes           |
+| Estudiante | abautista (Alexis Bautista)       | ou=estudiantes           |
+| Estudiante | acorrea (Adrian Correa)           | ou=estudiantes           |
+| Estudiante | svite (Santiago Vite)             | ou=estudiantes           |
 
 
 ##  Guía de Registro de un Nuevo Usuario (Juan Perez)
@@ -123,7 +140,7 @@ Defina la identidad y la clave de acceso en el Centro de Distribución de Claves
 ```bash
 sudo kadmin.local -q "addprinc jperez"
 ```
-Nota: El sistema le solicitará ingresar una contraseña dos veces (ej. Contraseña123).
+Nota: El sistema le solicitará ingresar una contraseña dos veces (ej. contraseña123).
 
 Paso 2: Creación del Perfil de Identidad (LDIF)
 
